@@ -3,16 +3,17 @@ import { supabase } from '../../lib/supabase';
 import AdminLayout from '../../components/admin/AdminLayout';
 import { Edit2, Plus, Save, Trash2, X } from 'lucide-react';
 
+import { DAYLI_PRODUCTS } from '../../lib/hardcodedProducts';
+
 export default function AdminProducts() {
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<any[]>(DAYLI_PRODUCTS);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState<'add' | 'edit'>('add');
   const [editForm, setEditForm] = useState<any>({});
   const [saving, setSaving] = useState(false);
 
   const fetchProducts = async () => {
-    const { data } = await supabase.from('products').select('*').order('created_at', { ascending: false });
-    if (data) setProducts(data);
+    // In mockup mode, we just use local state for now
   };
 
   useEffect(() => {

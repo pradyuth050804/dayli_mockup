@@ -6,6 +6,8 @@ import { supabase } from '../lib/supabase';
 import { Product } from '../lib/types';
 import { useCart } from '../context/CartContext';
 
+import { DAYLI_PRODUCTS } from '../lib/hardcodedProducts';
+
 type PriceType = 'subscription' | 'one_time';
 
 const categoryGradients: Record<string, string> = {
@@ -27,15 +29,11 @@ export default function ProductDetailPage() {
   useEffect(() => {
     if (!slug) return;
 
-    supabase
-      .from('products')
-      .select('*')
-      .eq('slug', slug)
-      .maybeSingle()
-      .then(({ data }) => {
-        if (data) setProduct(data as Product);
-        setLoading(false);
-      });
+    const found = DAYLI_PRODUCTS.find(p => p.slug === slug);
+    if (found) {
+      setProduct(found);
+    }
+    setLoading(false);
   }, [slug]);
 
   const handleAdd = () => {

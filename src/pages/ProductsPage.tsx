@@ -18,15 +18,8 @@ export default function ProductsPage() {
   const { addItem } = useCart();
 
   useEffect(() => {
-    supabase.from('products').select('*').eq('is_active', true).order('created_at', { ascending: false })
-      .then(({ data, error }) => {
-        if (error) {
-          console.error("Supabase Error:", error);
-          setErrorMsg(error.message);
-        }
-        if (data) setProducts(data);
-        setLoading(false);
-      });
+    setProducts(DAYLI_PRODUCTS);
+    setLoading(false);
   }, []);
 
   const filtered = products.filter(p => {

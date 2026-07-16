@@ -7,10 +7,12 @@ export default function AdminUsers() {
   const [users, setUsers] = useState<any[]>([]);
 
   useEffect(() => {
-    supabase.from('user_profiles').select('*').order('created_at', { ascending: false })
-      .then(({ data }) => {
-        if (data) setUsers(data);
-      });
+    // Mockup data for users
+    setUsers([
+      { id: '1', full_name: 'Sarah Johnson', email: 'sarah.j@example.com', role: 'user', created_at: new Date().toISOString(), health_plan_generated: true },
+      { id: '2', full_name: 'Michael Chen', email: 'mike.chen@example.com', role: 'user', created_at: new Date(Date.now() - 86400000).toISOString(), health_plan_generated: false },
+      { id: '3', full_name: 'Admin User', email: 'admin@dayli.com', role: 'admin', created_at: new Date(Date.now() - 86400000 * 5).toISOString(), health_plan_generated: true },
+    ]);
   }, []);
 
   return (

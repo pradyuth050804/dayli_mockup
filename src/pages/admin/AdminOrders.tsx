@@ -6,10 +6,12 @@ export default function AdminOrders() {
   const [orders, setOrders] = useState<any[]>([]);
 
   useEffect(() => {
-    supabase.from('orders').select('*').order('created_at', { ascending: false })
-      .then(({ data }) => {
-        if (data) setOrders(data);
-      });
+    // Mockup data for orders
+    setOrders([
+      { id: 'ord-12345', created_at: new Date().toISOString(), shipping_name: 'Sarah Johnson', guest_email: 'sarah.j@example.com', total_amount: 149.00, status: 'completed' },
+      { id: 'ord-67890', created_at: new Date(Date.now() - 3600000).toISOString(), shipping_name: 'Michael Chen', guest_email: 'mike.chen@example.com', total_amount: 85.00, status: 'pending' },
+      { id: 'ord-11223', created_at: new Date(Date.now() - 86400000).toISOString(), shipping_name: 'Emma Watson', guest_email: 'emma.w@example.com', total_amount: 215.50, status: 'completed' },
+    ]);
   }, []);
 
   return (
