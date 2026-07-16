@@ -14,10 +14,7 @@ export default function ProductsPreview() {
   const { addItem } = useCart();
 
   useEffect(() => {
-    supabase.from('products').select('*').eq('is_active', true).order('created_at', { ascending: false }).limit(6)
-      .then(({ data }) => {
-        if (data) setProducts(data);
-      });
+    setProducts(DAYLI_PRODUCTS.slice(0, 6));
   }, []);
 
   return (

@@ -14,8 +14,8 @@ export default function CtaSection() {
   const handleWaitlist = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    await supabase.from('waitlist').insert({ email });
-    setSubmitted(true);
+    // Mock waitlist signup
+    setTimeout(() => setSubmitted(true), 500);
   };
 
   return (
